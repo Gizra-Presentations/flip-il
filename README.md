@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/.svg?branch=master)](https://travis-ci.org/)
+[![Build Status](https://travis-ci.org/Gizra-Presentations/elm-tlv2.svg?branch=master)](https://travis-ci.org/)
 
 > elm-tlv2
 
