@@ -7,9 +7,13 @@ import Person exposing (initialModel, Model, Kids)
 decrementActionSuite : Test
 decrementActionSuite =
   suite "Decerment action"
+    -- Kids = -1 -> Kids = 0
     [ test "negative count" (assertEqual 0 (updateCounter Person.Decrement -1))
+    -- Kids = 0 -> Kids = 0
     , test "zero count" (assertEqual 0 (updateCounter Person.Decrement 0))
+    -- Kids = 1 -> Kids = 0
     , test "positive count" (assertEqual 0 (updateCounter Person.Decrement 1))
+    -- Kids = 5 -> Kids = 4
     , test "top limit count" (assertEqual 4 (updateCounter Person.Decrement 5))
     ]
 
