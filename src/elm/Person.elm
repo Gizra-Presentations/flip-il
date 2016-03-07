@@ -6,16 +6,18 @@ import Html.Events exposing (onClick)
 
 -- MODEL
 
+type Kids = Kids Int
+
 type alias Model =
   { age  : Int
-  , kids : Int
+  , kids : Kids
   , name : String
   }
 
 initialModel : Model
 initialModel =
   { age  = 38
-  , kids = 3
+  , kids = Kids 3
   , name = "Amitai"
   }
 
@@ -35,14 +37,22 @@ update : Action -> Model -> (Model, Effects Action)
 update action model =
   case action of
     Decrement ->
-      ( { model | kids = model.kids - 1 }
-      , Effects.none
-      )
+      let
+        (Kids val) = model.kids
+        kids' = if val < 1 then Kids 0 else Kids (val - 1)
+      in
+        ( { model | kids = kids' }
+        , Effects.none
+        )
 
     Increment ->
-      ( { model | kids = model.kids + 1 }
-      , Effects.none
-      )
+      let
+        (Kids val) = model.kids
+        kids' = if val > 4 then Kids 5 else Kids (val + 1)
+      in
+        ( { model | kids = kids' }
+        , Effects.none
+        )
 
 -- VIEW
 
@@ -51,7 +61,7 @@ view address model =
   div []
     [ viewName model.name
     , viewAge  model.age
-    , viewKids model.age
+    , viewKids model.kids
     , button [ onClick address Decrement ] [ text "-" ]
     , button [ onClick address Increment ] [ text "+" ]
     , pre [] [ text (toString model) ]
@@ -65,6 +75,9 @@ viewAge : Int -> Html
 viewAge age =
   div [] [ text <| "Age: " ++ (toString age) ]
 
-viewKids : Int -> Html
+viewKids : Kids -> Html
 viewKids kids =
-  div [] [ text <| "Kids num: " ++ (toString kids) ]
+  let
+    (Kids val) = kids
+  in
+  div [] [ text <| "Kids num: " ++ (toString val) ]

@@ -3,12 +3,12 @@ module Main where
 import ElmTest exposing (..)
 import Graphics.Element exposing (Element)
 
-import CounterTest exposing (all)
+import PersonTest exposing (all)
 
 allTests : Test
 allTests =
   suite "All tests"
-    [ CounterTest.all
+    [ PersonTest.all
     ]
 
 main : Element
