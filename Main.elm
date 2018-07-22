@@ -5,6 +5,9 @@ import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
 
 
+-- https://ellie-app.com/QMDPjP2Sr6a1
+
+
 type alias Model =
     { name : String
     , kids : Int
@@ -50,13 +53,15 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div [ class "center" ]
-        [ div [] [ text <| "Name: " ++ model.name ]
-        , div [] [ text <| "Age: " ++ toString model.age ]
-        , div [] [ text <| "Kids num: " ++ toString model.kids ]
-        , button [ onClick DecrementCounter ] [ text "-" ]
-        , button [ onClick IncrementCounter ] [ text "+" ]
-        , pre [] [ text <| toString model.counter ]
+    div [ class "container" ]
+        [ div [ class "row" ]
+            [ div [] [ text <| "Name: " ++ model.name ]
+            , div [] [ text <| "Age: " ++ toString model.age ]
+            , div [] [ text <| "Kids num: " ++ toString model.kids ]
+            , button [ onClick DecrementCounter ] [ text "-" ]
+            , button [ onClick IncrementCounter ] [ text "+" ]
+            , pre [] [ text <| toString model.counter ]
+            ]
         ]
 
 
